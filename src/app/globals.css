@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@import "../styles/tokens.css";
+@import "../styles/animations.css";
+@import "../styles/utilities.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Mono scale */
+  --color-mono-0: var(--mono-0);
+  --color-mono-50: var(--mono-50);
+  --color-mono-100: var(--mono-100);
+  --color-mono-200: var(--mono-200);
+  --color-mono-300: var(--mono-300);
+  --color-mono-400: var(--mono-400);
+  --color-mono-500: var(--mono-500);
+  --color-mono-600: var(--mono-600);
+  --color-mono-700: var(--mono-700);
+  --color-mono-800: var(--mono-800);
+  --color-mono-900: var(--mono-900);
+  --color-mono-950: var(--mono-950);
+  --color-mono-1000: var(--mono-1000);
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+
+  /* Radius */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-4xl: calc(var(--radius-3xl) * 1.2);
+
+  /* Spacing (extend Tailwind) */
+  --spacing-section: var(--section-y);
+  --spacing-section-x: var(--section-x);
+
+  /* Animation */
+  --ease-premium: var(--ease-premium);
+  --ease-dramatic: var(--ease-dramatic);
+  --ease-standard: var(--ease-standard);
+  --ease-decelerate: var(--ease-decelerate);
+
+  --duration-instant: var(--duration-instant);
+  --duration-fast: var(--duration-fast);
+  --duration-normal: var(--duration-normal);
+  --duration-slow: var(--duration-slow);
+  --duration-cinematic: var(--duration-cinematic);
+  --duration-dramatic: var(--duration-dramatic);
+
+  /* shadcn sidebar + charts */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    letter-spacing: var(--tracking-tight);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: oklch(1 0 0 / 14%);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+}

@@ -1,0 +1,1 @@
+export { threeConfig } from "./config";
