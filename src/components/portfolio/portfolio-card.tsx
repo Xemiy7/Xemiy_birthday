@@ -54,11 +54,17 @@ export function PortfolioCard({
       <Card3D intensity={5}>
         <div
           className={cn(
-            "image-frame relative overflow-hidden rounded-2xl",
+            "image-frame image-shine relative overflow-hidden rounded-2xl",
             sizeHeights[item.size],
           )}
         >
-          <ImageDistortion intensity={2.5} className="absolute inset-0">
+          <Link
+            href={`/work/${item.slug}`}
+            className="absolute inset-0 z-[1]"
+            aria-label={`View ${item.title}`}
+          />
+
+          <ImageDistortion intensity={2.5} className="absolute inset-0 z-0">
             <m.div
               className="h-full w-full"
               animate={{ scale: isHovered ? 1.04 : 1 }}
@@ -86,7 +92,7 @@ export function PortfolioCard({
 
         <div className="absolute inset-0 bg-gradient-to-t from-mono-1000/80 via-mono-1000/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
 
-        <div className="absolute inset-x-0 top-0 flex items-center justify-between p-3">
+        <div className="absolute inset-x-0 top-0 z-[2] flex items-center justify-between p-3">
           <m.span
             initial={false}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : -8 }}
@@ -96,17 +102,20 @@ export function PortfolioCard({
             {item.category}
           </m.span>
 
-          <div className="flex gap-2">
-            <LikeButton
-              projectId={item.id}
-              fallbackCount={item.likes}
-              variant="icon"
-            />
+          <div className="relative z-[2] flex gap-2">
+            <div onClick={(e) => e.preventDefault()} onKeyDown={(e) => e.stopPropagation()}>
+              <LikeButton
+                projectId={item.id}
+                fallbackCount={item.likes}
+                variant="icon"
+              />
+            </div>
 
             <m.button
               type="button"
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 onSave();
               }}
               aria-label={isSaved ? "Unsave project" : "Save project"}
@@ -135,7 +144,7 @@ export function PortfolioCard({
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 p-4">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] p-4">
           <m.div
             initial={false}
             animate={{ y: isHovered ? 0 : 8, opacity: isHovered ? 1 : 0.85 }}
@@ -148,29 +157,24 @@ export function PortfolioCard({
             </p>
           </m.div>
 
-          <Link
-            href={`/work/${item.slug}`}
-            className="mt-3 flex items-center gap-2 overflow-hidden"
+          <m.span
+            className="mt-3 flex items-center gap-2 text-overline text-foreground"
+            initial={false}
+            animate={{ x: isHovered ? 0 : -4, opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: duration.normal, ease: easing.premium }}
           >
+            View Project
             <m.span
-              className="flex items-center gap-2 text-overline text-foreground"
-              initial={false}
-              animate={{ x: isHovered ? 0 : -4, opacity: isHovered ? 1 : 0 }}
+              animate={{ x: isHovered ? 4 : 0 }}
               transition={{ duration: duration.normal, ease: easing.premium }}
             >
-              View Project
-              <m.span
-                animate={{ x: isHovered ? 4 : 0 }}
-                transition={{ duration: duration.normal, ease: easing.premium }}
-              >
-                <ArrowUpRight className="size-3.5" strokeWidth={1.5} />
-              </m.span>
+              <ArrowUpRight className="size-3.5" strokeWidth={1.5} />
             </m.span>
-          </Link>
+          </m.span>
         </div>
 
         <m.div
-          className="absolute bottom-4 right-4"
+          className="absolute bottom-4 right-4 z-[2]"
           initial={false}
           animate={{ opacity: isHovered ? 0 : 1 }}
           transition={{ duration: duration.fast }}

@@ -5,6 +5,7 @@
 @import "../styles/tokens.css";
 @import "../styles/animations.css";
 @import "../styles/utilities.css";
+@import "../styles/interactions.css";
 
 @custom-variant dark (&:is(.dark *));
 

@@ -10,7 +10,7 @@ function Skeleton({ className, variant = "default", ...props }: SkeletonProps) {
       data-slot="skeleton"
       aria-hidden
       className={cn(
-        "loading-shimmer rounded-md bg-mono-800",
+        "loading-shimmer skeleton-wave rounded-md bg-mono-800",
         variant === "text" && "h-4 w-full max-w-xs rounded-sm",
         variant === "circular" && "size-10 rounded-full",
         variant === "image" && "image-landscape w-full rounded-lg",

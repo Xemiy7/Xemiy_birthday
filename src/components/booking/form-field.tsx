@@ -1,6 +1,8 @@
 "use client";
 
+import { AnimatePresence, m } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { easing, duration } from "@/lib/design-system";
 
 interface FormFieldProps {
   label: string;
@@ -19,25 +21,39 @@ export function FormField({
   children,
   className,
 }: FormFieldProps) {
+  const errorId = error ? `${htmlFor}-error` : undefined;
+
   return (
     <div className={cn("stack-xs", className)}>
       <label htmlFor={htmlFor} className="text-overline">
         {label}
         {required && <span className="text-muted-foreground"> *</span>}
       </label>
-      {children}
-      {error && <p className="text-caption text-mono-300">{error}</p>}
+      <div className="relative">
+        {children}
+      </div>
+      <AnimatePresence mode="wait">
+        {error && (
+          <m.p
+            id={errorId}
+            role="alert"
+            initial={{ opacity: 0, y: -4, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: duration.fast, ease: easing.premium }}
+            className="text-caption text-mono-300"
+          >
+            {error}
+          </m.p>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-export const inputClassName = cn(
-  "w-full rounded-xl border border-white/10 bg-white/4 px-4 py-3",
-  "text-body-sm text-foreground placeholder:text-muted-foreground",
-  "transition-premium outline-none",
-  "focus:border-white/25 focus:bg-white/6",
-);
-
-export const selectClassName = cn(inputClassName, "cursor-pointer appearance-none");
-
-export const textareaClassName = cn(inputClassName, "min-h-[140px] resize-y");
+// Re-export field styles from ui/input for backward compatibility
+export {
+  inputClassName,
+  selectClassName,
+  textareaClassName,
+} from "@/components/ui/input";

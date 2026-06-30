@@ -1,0 +1,260 @@
+/* ==========================================================================
+   xemiy — Premium microinteractions (global polish)
+   ========================================================================== */
+
+/* Remove default mobile tap flash */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom scrollbar — monochrome, minimal */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(1 0 0 / 18%) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: oklch(1 0 0 / 14%);
+  border-radius: 999px;
+  transition: background var(--duration-normal) var(--ease-premium);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: oklch(1 0 0 / 28%);
+}
+
+/* Cursor glow — hide system cursor on desktop when active */
+body.cursor-glow-active,
+body.cursor-glow-active a,
+body.cursor-glow-active button,
+body.cursor-glow-active [role="button"],
+body.cursor-glow-active label {
+  cursor: none;
+}
+
+body.cursor-glow-active input,
+body.cursor-glow-active textarea,
+body.cursor-glow-active select {
+  cursor: text;
+}
+
+.cursor-glow-ring {
+  transition:
+    width var(--duration-slow) var(--ease-premium),
+    height var(--duration-slow) var(--ease-premium),
+    opacity var(--duration-normal) var(--ease-premium);
+}
+
+.cursor-glow-ring--hover {
+  width: 320px;
+  height: 320px;
+  opacity: 1;
+}
+
+.cursor-glow-ring--press {
+  width: 180px;
+  height: 180px;
+  opacity: 0.7;
+}
+
+.cursor-glow-dot {
+  transition:
+    transform var(--duration-fast) var(--ease-premium),
+    opacity var(--duration-fast) var(--ease-premium);
+}
+
+.cursor-glow-dot--hover {
+  transform: translate(-50%, -50%) scale(1.6);
+}
+
+.cursor-glow-dot--press {
+  transform: translate(-50%, -50%) scale(0.75);
+}
+
+/* Button shine sweep */
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 38%,
+      oklch(1 0 0 / 14%) 50%,
+      transparent 62%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.65s var(--ease-premium);
+    pointer-events: none;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (hover: hover) {
+    &:hover::before {
+      transform: translateX(120%);
+    }
+  }
+}
+
+/* Tactile press — all interactive controls */
+@utility pressable {
+  transition: transform var(--duration-fast) var(--ease-premium);
+
+  @media (hover: hover) {
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+}
+
+@utility card-press {
+  transition:
+    transform var(--duration-normal) var(--ease-premium),
+    border-color var(--duration-normal) var(--ease-standard),
+    box-shadow var(--duration-normal) var(--ease-premium);
+
+  @media (hover: hover) {
+    &:active {
+      transform: translateY(0) scale(0.995);
+    }
+  }
+}
+
+/* Form field — shared control surface */
+@utility field-control {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  border: 1px solid oklch(1 0 0 / 10%);
+  background: oklch(1 0 0 / 4%);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-body-sm);
+  color: var(--foreground);
+  transition:
+    border-color var(--duration-normal) var(--ease-premium),
+    background-color var(--duration-normal) var(--ease-premium),
+    box-shadow var(--duration-normal) var(--ease-premium),
+    transform var(--duration-fast) var(--ease-premium);
+  outline: none;
+  appearance: none;
+
+  &::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  &:hover:not(:disabled):not(:focus-visible) {
+    border-color: oklch(1 0 0 / 16%);
+    background: oklch(1 0 0 / 5%);
+  }
+
+  &:focus-visible {
+    border-color: oklch(1 0 0 / 28%);
+    background: oklch(1 0 0 / 6%);
+    box-shadow: var(--focus-ring);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  &[aria-invalid="true"] {
+    border-color: oklch(0.75 0 0 / 45%);
+    background: oklch(1 0 0 / 3%);
+  }
+}
+
+@utility field-control-search {
+  border-radius: var(--radius-full);
+  padding-left: 2.75rem;
+  padding-right: 2.75rem;
+}
+
+/* Image shine on hover */
+@utility image-shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 42%,
+      oklch(1 0 0 / 8%) 50%,
+      transparent 58%
+    );
+    transform: translateX(-120%) skewX(-12deg);
+    transition: transform 0.85s var(--ease-premium);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      transform: translateX(120%) skewX(-12deg);
+    }
+  }
+}
+
+/* Nav link pill indicator */
+@utility nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--text-overline);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  transition: color var(--duration-normal) var(--ease-premium);
+}
+
+/* Skeleton wave */
+@utility skeleton-wave {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      oklch(1 0 0 / 6%) 50%,
+      transparent 100%
+    );
+    transform: translateX(-100%);
+    animation: skeleton-wave 1.6s var(--ease-standard) infinite;
+  }
+}
+
+@keyframes skeleton-wave {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Smooth anchor scroll — Lenis handles most; fallback */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
