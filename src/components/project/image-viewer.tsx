@@ -78,7 +78,7 @@ export function FullscreenViewer({
             type="button"
             onClick={onClose}
             aria-label="Close viewer"
-            className="absolute right-6 top-6 z-10 flex size-11 items-center justify-center rounded-full glass transition-premium hover:bg-white/12"
+            className="absolute right-6 top-6 z-10 flex size-11 items-center justify-center rounded-full glass pressable transition-premium hover:bg-white/12 hover:scale-105"
           >
             <X className="size-5" strokeWidth={1.5} />
           </button>
@@ -87,7 +87,7 @@ export function FullscreenViewer({
             type="button"
             onClick={goPrev}
             aria-label="Previous image"
-            className="absolute left-4 z-10 flex size-11 items-center justify-center rounded-full glass transition-premium hover:bg-white/12 md:left-8"
+            className="absolute left-4 z-10 flex size-11 items-center justify-center rounded-full glass pressable transition-premium hover:bg-white/12 hover:scale-105 md:left-8"
           >
             <ChevronLeft className="size-5" strokeWidth={1.5} />
           </button>
@@ -96,7 +96,7 @@ export function FullscreenViewer({
             type="button"
             onClick={goNext}
             aria-label="Next image"
-            className="absolute right-4 z-10 flex size-11 items-center justify-center rounded-full glass transition-premium hover:bg-white/12 md:right-8"
+            className="absolute right-4 z-10 flex size-11 items-center justify-center rounded-full glass pressable transition-premium hover:bg-white/12 hover:scale-105 md:right-8"
           >
             <ChevronRight className="size-5" strokeWidth={1.5} />
           </button>
@@ -144,7 +144,7 @@ export function ZoomableImage({ image, onOpen, className }: ZoomableImageProps) 
       onMouseLeave={() => setIsHovered(false)}
       aria-label={`View ${image.caption} fullscreen`}
       className={cn(
-        "group relative w-full overflow-hidden rounded-xl text-left",
+        "group image-frame image-shine relative w-full overflow-hidden rounded-xl text-left pressable",
         aspectClasses[image.aspect],
         className,
       )}

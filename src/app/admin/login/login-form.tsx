@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, Lock } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -52,12 +53,12 @@ export function LoginFormClient() {
             <label htmlFor="password" className="text-overline mb-2 block">
               Password
             </label>
-            <input
+            <Input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full rounded-xl border border-white/10 bg-white/4 px-4 py-3 text-body-sm outline-none focus:border-white/25"
+              invalid={!!error}
               required
               autoFocus
             />

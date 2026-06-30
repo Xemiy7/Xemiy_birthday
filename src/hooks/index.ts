@@ -1,4 +1,5 @@
 export { useLenisInstance } from "@/providers/lenis-context";
+export { useActiveHash } from "./use-active-hash";
 export { useSceneVisible } from "./use-scene-visible";
 export { useGsapContext } from "./use-gsap-context";
 export { useMediaQuery, useIsMobile } from "./use-media-query";

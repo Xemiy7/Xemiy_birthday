@@ -5,7 +5,7 @@ const cardVariants = cva("card", {
   variants: {
     variant: {
       default: "shadow-sm",
-      interactive: "card-interactive shadow-sm",
+      interactive: "card-interactive card-press shadow-sm",
       glass: "card-glass",
       flat: "card-flat",
     },

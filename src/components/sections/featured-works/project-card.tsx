@@ -26,7 +26,7 @@ export function ProjectCard({ project, index, className }: ProjectCardProps) {
     >
       <Card3D intensity={5}>
         <ImageReveal delay={index * 0.08}>
-          <div className="image-frame image-landscape image-reveal relative">
+          <div className="image-frame image-landscape image-reveal image-shine relative">
             <ImageDistortion intensity={3}>
               <Parallax speed={0.12}>
                 <MonochromePlaceholder

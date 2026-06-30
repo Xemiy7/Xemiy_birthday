@@ -8,10 +8,8 @@ import { BookingSuccess } from "@/components/booking/booking-success";
 import { FileUpload } from "@/components/booking/file-upload";
 import {
   FormField,
-  inputClassName,
-  selectClassName,
-  textareaClassName,
 } from "@/components/booking/form-field";
+import { Input, Select, Textarea } from "@/components/ui/input";
 import { buttonVariants } from "@/components/ui/button";
 import {
   budgetRanges,
@@ -197,47 +195,47 @@ export function BookingForm({
         <h3 className="text-title-sm border-b border-white/8 pb-3">Your Details</h3>
         <div className="grid-2 gap-4">
           <FormField label="Name" htmlFor="name" required error={errors.name}>
-            <input
+            <Input
               id="name"
               type="text"
               value={form.name}
               onChange={(e) => update("name", e.target.value)}
-              className={inputClassName}
+              invalid={!!errors.name}
               placeholder="Full name"
               autoComplete="name"
             />
           </FormField>
 
           <FormField label="Email" htmlFor="email" required error={errors.email}>
-            <input
+            <Input
               id="email"
               type="email"
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
-              className={inputClassName}
+              invalid={!!errors.email}
               placeholder="you@email.com"
               autoComplete="email"
             />
           </FormField>
 
           <FormField label="Phone" htmlFor="phone" required error={errors.phone}>
-            <input
+            <Input
               id="phone"
               type="tel"
               value={form.phone}
               onChange={(e) => update("phone", e.target.value)}
-              className={inputClassName}
+              invalid={!!errors.phone}
               placeholder="+234 800 000 0000"
               autoComplete="tel"
             />
           </FormField>
 
           <FormField label="Country" htmlFor="country" required error={errors.country}>
-            <select
+            <Select
               id="country"
               value={form.country}
               onChange={(e) => update("country", e.target.value)}
-              className={selectClassName}
+              invalid={!!errors.country}
             >
               <option value="">Select country</option>
               {countries.map((c) => (
@@ -245,7 +243,7 @@ export function BookingForm({
                   {c}
                 </option>
               ))}
-            </select>
+            </Select>
           </FormField>
         </div>
       </div>
@@ -260,11 +258,11 @@ export function BookingForm({
             required
             error={errors.projectType}
           >
-            <select
+            <Select
               id="projectType"
               value={form.projectType}
               onChange={(e) => update("projectType", e.target.value)}
-              className={selectClassName}
+              invalid={!!errors.projectType}
             >
               <option value="">Select type</option>
               {projectTypes.map((t) => (
@@ -272,15 +270,15 @@ export function BookingForm({
                   {t}
                 </option>
               ))}
-            </select>
+            </Select>
           </FormField>
 
           <FormField label="Budget" htmlFor="budget" required error={errors.budget}>
-            <select
+            <Select
               id="budget"
               value={form.budget}
               onChange={(e) => update("budget", e.target.value)}
-              className={selectClassName}
+              invalid={!!errors.budget}
             >
               <option value="">Select budget range</option>
               {budgetRanges.map((b) => (
@@ -288,16 +286,15 @@ export function BookingForm({
                   {b}
                 </option>
               ))}
-            </select>
+            </Select>
           </FormField>
 
           <FormField label="Deadline" htmlFor="deadline" className="col-span-full sm:col-span-1">
-            <input
+            <Input
               id="deadline"
               type="date"
               value={form.deadline}
               onChange={(e) => update("deadline", e.target.value)}
-              className={inputClassName}
               min={new Date().toISOString().split("T")[0]}
             />
           </FormField>
@@ -309,11 +306,11 @@ export function BookingForm({
             error={errors.preferredStyle}
             className="col-span-full sm:col-span-1"
           >
-            <select
+            <Select
               id="preferredStyle"
               value={form.preferredStyle}
               onChange={(e) => update("preferredStyle", e.target.value)}
-              className={selectClassName}
+              invalid={!!errors.preferredStyle}
             >
               <option value="">Select style</option>
               {preferredStyles.map((s) => (
@@ -321,7 +318,7 @@ export function BookingForm({
                   {s}
                 </option>
               ))}
-            </select>
+            </Select>
           </FormField>
         </div>
 
@@ -331,11 +328,11 @@ export function BookingForm({
           required
           error={errors.description}
         >
-          <textarea
+          <Textarea
             id="description"
             value={form.description}
             onChange={(e) => update("description", e.target.value)}
-            className={textareaClassName}
+            invalid={!!errors.description}
             placeholder="Tell me about your project, goals, and vision..."
           />
         </FormField>
